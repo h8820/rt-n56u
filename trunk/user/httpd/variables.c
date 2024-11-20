@@ -835,6 +835,47 @@
 	};
 #endif
 
+#if defined(APP_ALIDDNS)
+			{"aliddns_enable", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_interval", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_ttl", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_ak", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_sk", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_name", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_name2", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_name6", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_domain", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_domain2", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_domain6", "", NULL, EVM_RESTART_ALIDDNS },
+			{"scripts.ddns_script.sh", "File", NULL, EVM_RESTART_ALIDDNS},
+#endif
+
+#if defined(APP_ZEROTIER)
+	struct variable variables_ZeroConf[] = {
+			{"zerotier_enable", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotier_id", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotier_moonid", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotiermoon_enable", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotiermoon_ip", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotier_nat", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zero_staticnum_x", "", NULL, EVM_RESTART_ZEROTIER},
+			{"ZeroList", "Group", ARGV((char*)variables_ZeroConf_ZeroList, "8", "55", "zero_staticnum_x"), EVM_RESTART_ZEROTIER},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_WIREGUARD)
+	struct variable variables_WIREGUARD[] = {
+			{"wireguard_enable", "", NULL, EVM_RESTART_WIREGUARD},
+			{"wireguard_localip", "", NULL, EVM_RESTART_WIREGUARD},
+			{"wireguard_localkey", "", NULL, EVM_RESTART_WIREGUARD},
+			{"wireguard_peerkey", "", NULL, EVM_RESTART_WIREGUARD},
+			{"wireguard_peerip", "", NULL, EVM_RESTART_WIREGUARD},
+			{"wireguard_localip", "", NULL, EVM_RESTART_WIREGUARD},
+			{0,0,0,0}
+	};
+#endif
+
 #if defined(APP_SHADOWSOCKS)
 	struct variable variables_ShadowsocksConf[] = {
 			{"ss_enable","",NULL, EVM_RESTART_SHADOWSOCKS},
@@ -973,6 +1014,7 @@
 		{"DeviceSecurity11b",		variables_DeviceSecurity11b},
 		{"WLANAuthentication11a",	variables_WLANAuthentication11a},
 		{"WLANAuthentication11b",	variables_WLANAuthentication11b},
+#endif
 #if defined(APP_DNSFORWARDER)
 		{"dnsforwarderConf",		variables_dnsforwarderConf},
 #endif
@@ -984,6 +1026,12 @@
 #endif
 #if defined(APP_SHADOWSOCKS)
 		{"ShadowsocksConf",		variables_ShadowsocksConf},
+#endif
+#if defined(APP_ZEROTIER)
+		{"ZeroConf",		variables_ZeroConf},
+#endif
+#if defined(APP_WIREGUARD)
+		{"WIREGUARD",		variables_WIREGUARD},
 #endif
 		{"LANGUAGE",			variables_Language},
 		{0,0}
@@ -1067,6 +1115,15 @@
 #if defined(APP_SHADOWSOCKS)
 		{EVM_RESTART_SHADOWSOCKS,	EVT_RESTART_SHADOWSOCKS,	RCN_RESTART_SHADOWSOCKS,  0},
 		{EVM_RESTART_SS_TUNNEL,		EVT_RESTART_SS_TUNNEL,		RCN_RESTART_SS_TUNNEL,	  0},
+#endif
+#if defined(APP_ALIDDNS)
+		{EVM_RESTART_ALIDDNS,		EVT_RESTART_ALIDDNS,		RCN_RESTART_ALIDDNS,	0},
+#endif
+#if defined(APP_ZEROTIER)
+		{EVM_RESTART_ZEROTIER,		EVT_RESTART_ZEROTIER,		RCN_RESTART_ZEROTIER,	0},
+#endif
+#if defined(APP_WIREGUARD)
+		{EVM_RESTART_WIREGUARD,		EVT_RESTART_WIREGUARD,		RCN_RESTART_WIREGUARD,	0},
 #endif
 #if defined(APP_SMBD) || defined(APP_NMBD)
 		{EVM_RESTART_NMBD,		EVT_RESTART_NMBD,		RCN_RESTART_NMBD,	0},
