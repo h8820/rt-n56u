@@ -2045,6 +2045,15 @@ static int rules_count_hook(int eid, webs_t wp, int argc, char **argv)
 
 #endif
 
+#if defined (APP_ZEROTIER)
+static int zerotier_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int zerotier_status_code = pids("zerotier-one");
+	websWrite(wp, "function zerotier_status() { return %d;}\n", zerotier_status_code);
+	return 0;
+}
+#endif
+
 #if defined(APP_DNSFORWARDER)
 static int dnsforwarder_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2248,6 +2257,21 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_xupnpd = 0;
 #endif
+#if defined(APP_ALIDDNS)
+	int found_app_aliddns = 1;
+#else
+	int found_app_aliddns = 0;
+#endif
+#if defined(APP_ZEROTIER)
+	int found_app_zerotier = 1;
+#else
+	int found_app_zerotier = 0;
+#endif
+#if defined(APP_WIREGUARD)
+	int found_app_wireguard = 1;
+#else
+	int found_app_wireguard = 0;
+#endif	
 #if defined(USE_IPV6)
 	int has_ipv6 = 1;
 #else
@@ -2269,7 +2293,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 	int has_ipv4_ppe = 0;
 	int has_ipv6_ppe = 0;
 #endif
-
 #if (BOARD_RAM_SIZE < 64)
 	int max_conn = 16384;
 #elif (BOARD_RAM_SIZE < 128)
@@ -2416,6 +2439,9 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_shadowsocks() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_mentohust() { return %d;}\n",
+		"function found_app_zerotier() { return %d;}\n"
+		"function found_app_aliddns() { return %d;}\n"
+		"function found_app_wireguard() { return %d;}\n"
 		found_utl_hdparm,
 		found_app_ovpn,
 		found_app_dlna,
@@ -2438,6 +2464,10 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_shadowsocks,
 		found_app_xupnpd,
 		found_app_mentohust
+		0,
+		found_app_zerotier,
+		found_app_aliddns,
+		found_app_wireguard,
 	);
 
 	websWrite(wp,
@@ -4145,6 +4175,10 @@ struct ej_handler ej_handlers[] =
 #endif
 #if defined (APP_DNSFORWARDER)
 	{ "dnsforwarder_status", dnsforwarder_status_hook},
+#endif*/
+#if defined (APP_ZEROTIER)
+	{ "zerotier_status", zerotier_status_hook},
+
 #endif
 	{ "openssl_util_hook", openssl_util_hook},
 	{ "openvpn_srv_cert_hook", openvpn_srv_cert_hook},
