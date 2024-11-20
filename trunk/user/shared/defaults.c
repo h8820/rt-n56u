@@ -554,6 +554,21 @@ struct nvram_pair router_defaults[] = {
 	{ "dns_forwarder_server", "8.8.4.4:53" },
 #endif
 
+#if defined(APP_ALIDDNS)
+	/* Aliddns */
+	{ "aliddns_enable", "0" },
+	{ "aliddns_interval", "600" },
+	{ "aliddns_ttl", "600" },
+	{ "aliddns_ak", ""  },
+	{ "aliddns_sk", "" },
+	{ "aliddns_name", "" },
+	{ "aliddns_name2", "" },
+	{ "aliddns_name6", "" },
+	{ "aliddns_domain", "" },
+	{ "aliddns_domain2", "" },
+	{ "aliddns_domain6", "" },
+#endif
+
 #if defined(APP_SHADOWSOCKS)
 	/* shadowsocks */
 	{ "ss_type", "0" }, //0=ss, 1=ssr
@@ -867,6 +882,26 @@ struct nvram_pair router_defaults[] = {
 
 	{ "xTun_dns", "1.1.1.1" },
 	{ "xTun_black_list", "/etc/storage/xTun_black_list" },
+#endif
+
+#if defined(APP_ZEROTIER)
+	/*Zerotier*/
+	{ "zerotier_enable", "0" },
+	{ "zerotier_id", "" },
+	{ "zerotier_nat", "0" },
+	{ "zerotier_secret", "" },
+	{ "zero_staticnum_x", "0" },
+#endif
+
+#if defined(APP_WIREGUARD)
+	/*WIREGUARD*/
+	{ "wireguard_enable", "" },
+	{ "wireguard_sport", "0" },
+	{ "wireguard_localip", "" },
+	{ "wireguard_localkey", "" },
+	{ "wireguard_peerip", "" },
+	{ "wireguard_peerkey", "" },
+        { "wireguard_outip", "" },
 #endif
 
 	{ 0, 0 }
