@@ -198,6 +198,15 @@ ifneq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
 	rm -f $(INSTALLDIR)/www/Shadowsocks.asp
 	rm -f $(INSTALLDIR)/www/Shadowsocks_action.asp
 	rm -f $(INSTALLDIR)/www/Shadowsocks_log.asp
+endifendif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_ZEROTIER),y)
+	rm -f $(INSTALLDIR)/www/Advanced_zerotier.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_WIREGUARD),y)
+	rm -f $(INSTALLDIR)/www/Advanced_wireguard.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_ALIDDNS),y)
+	rm -f $(INSTALLDIR)/www/Advanced_aliddns.asp
 endif
 
 clean:
