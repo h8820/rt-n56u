@@ -159,6 +159,7 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_TTYD)		+= ttyd
 dir_$(FRP_ENABLE)				+= frp
 dir_$(SOFTETHERVPN_ENABLE)			+= softethervpn
 dir_$(CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT)         += scutclient
+dir_$(CONFIG_FIRMWARE_INCLUDE_ZEROTIER)			+= zerotier
 dir_$(CONFIG_FIRMWARE_INCLUDE_VLMCSD)			+= vlmcsd
 dir_$(CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER)		+= dns-forwarder
 dir_$(SHADOWSOCKS_ENABLE)				+= shadowsocks
@@ -169,7 +170,7 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_IPERF3)			+= iperf3
 dir_$(CONFIG_FIRMWARE_INCLUDE_MINIEAP)			+= minieap
 dir_$(CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT)		+= njit-client
 dir_$(CONFIG_FIRMWARE_INCLUDE_MENTOHUST)		+= mentohust
-dir_$(CONFIG_FIRMWARE_INCLUDE_xTUN) 			+= xTun
+dir_$(CONFIG_FIRMWARE_INCLUDE_xTUN)			+= xTun
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_WING),y)
 dir_y 			+= wing
 dir_y 			+= ipt2socks
