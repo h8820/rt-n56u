@@ -364,6 +364,23 @@ void restart_vlmcsd(void){
 }
 #endif
 
+#if defined(APP_ZEROTIER)
+void stop_zerotier(void){
+	eval("/usr/bin/zerotier.sh","stop");
+}
+
+void start_zerotier(void){
+	int zerotier_enable = nvram_get_int("zerotier_enable");
+	if ( zerotier_enable == 1)
+		eval("/usr/bin/zerotier.sh","start");
+}
+
+void restart_zerotier(void){
+	stop_zerotier();
+	start_zerotier();
+}
+#endif
+
 #if defined(APP_DNSFORWARDER)
 void stop_dnsforwarder(void){
 	eval("/usr/bin/dns-forwarder.sh","stop");
@@ -437,6 +454,23 @@ start_httpd(int restart_fw)
 		
 		restart_fw_need |= nvram_get_int("misc_http_x");
 	}
+
+#if defined(APP_WIREGUARD)
+void stop_wireguard(void){
+	eval("/usr/bin/wireguard.sh","stop");
+}
+
+void start_wireguard(void){
+	int wireguard_enable = nvram_get_int("wireguard_enable");
+	if ( wireguard_enable == 1)
+		eval("/usr/bin/wireguard.sh","start");
+}
+
+void restart_wireguard(void){
+	stop_wireguard();
+	start_wireguard();
+}
+#endif
 
 #if defined (SUPPORT_HTTPS)
 	if (http_proto == 1 || http_proto == 2) {
@@ -645,13 +679,18 @@ stop_services(int stopall)
 #if defined (SRV_U2EC)
 	stop_u2ec();
 #endif
-#endif
 #if defined(APP_SCUT)
 	stop_scutclient();
 #endif
+#if defined(APP_ZEROTIER)
+	stop_zerotier();
+#endif	
 #if defined(APP_MENTOHUST)
 	stop_mentohust();
 #endif
+#if defined(APP_WIREGUARD)
+	stop_wireguard();
+#endif	
 #if defined(APP_TTYD)
 	stop_ttyd();
 #endif
