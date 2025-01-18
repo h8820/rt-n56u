@@ -545,8 +545,18 @@ void stop_vlmcsd(void);
 void start_vlmcsd(void);
 void restart_vlmcsd(void);
 #endif
+#if defined(APP_ZEROTIER)
+void stop_zerotier(void);
+void start_zerotier(void);
+void restart_zerotier(void);
+#endif
 #if defined(APP_NAPT66)
 void start_napt66(void);
+#endif
+#if defined(APP_WIREGUARD)
+void stop_wireguard(void);
+void start_wireguard(void);
+void restart_wireguard(void);
 #endif
 #if defined(APP_DNSFORWARDER)
 void stop_dnsforwarder(void);
