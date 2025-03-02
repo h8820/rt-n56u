@@ -1,10 +1,6 @@
 name: YK-L1
 on: 
-  release:
-    types: [published]
-  push:
-    tags:
-    - 'v*'
+  workflow_dispatch:
   #  branches: 
   #    - master
 #  schedule:
