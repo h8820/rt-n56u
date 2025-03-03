@@ -2,8 +2,9 @@ name: Build and Release
 
 on:
   push:
-    tags:
-      - "v*"
+    watch:
+    types: [started]
+
 
 jobs:
   build:
