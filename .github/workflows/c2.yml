@@ -89,3 +89,13 @@ jobs:
       with:
         name: Padavan-packages
         path: /opt/images
+        
+    - name: Upload Firmware to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.ps123 }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: /opt/images/*.trx
+        asset_name: ${{ github.event.repository.name }}_${{ env.TNAME }}_$(date +%Y%m%d).trx
+        asset_content_type: application/octet-stream
